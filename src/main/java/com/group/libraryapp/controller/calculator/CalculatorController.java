@@ -15,7 +15,7 @@ public class CalculatorController {
 		return request.getNumber1() + request.getNumber2();
 	}
 
-	@PostMapping("/multiply") // POST /multiply * POST 인 경우 @RequestBody 필수! Body 넘겨 주기
+	@PostMapping("/multiply") // POST /multiply * POST 인 경우 @RequestBody 필수! POST-Body 넘겨 주기
 	public int multiplyTwoNumbers(@RequestBody CalculatorMultiplyRequest request) {
 		return request.getNumber1() * request.getNumber2();
 	}
