@@ -57,6 +57,14 @@ public class UserController {
 
 	@PutMapping("/user")
 	public void updateUser(@RequestBody UserUpdateRequest request) {
+		String readSql = "SELECT * FROM user WHERE id = ?";
+		// query 는 반환된 값을 List 로 감싸 준다.
+		boolean isUserNotExist = jdbcTemplate.query(readSql, (rs, rowNum) -> 0, request.getId()).isEmpty();
+
+		if(isUserNotExist) {
+			throw new IllegalArgumentException();
+		}
+
 		String sql = "UPDATE user SET name = ? WHERE id = ?";
 		jdbcTemplate.update(sql, request.getName(), request.getId());
 	}
