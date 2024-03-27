@@ -12,4 +12,5 @@ public class UserUpdateRequest {
 	public String getName() {
 		return name;
 	}
+
 }
