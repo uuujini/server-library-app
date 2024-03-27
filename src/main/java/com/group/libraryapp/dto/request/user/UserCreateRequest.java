@@ -1,4 +1,4 @@
-package com.group.libraryapp.dto.user.request;
+package com.group.libraryapp.dto.request.user;
 
 public class UserCreateRequest {
 	private String name;

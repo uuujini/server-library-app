@@ -1,4 +1,4 @@
-package com.group.libraryapp.dto.calculator.request;
+package com.group.libraryapp.dto.request.calculator;
 
 public class CalculatorAddRequest {
 	private final int number1;
