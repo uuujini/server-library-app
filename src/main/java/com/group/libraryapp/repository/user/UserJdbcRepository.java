@@ -3,14 +3,16 @@ package com.group.libraryapp.repository.user;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.group.libraryapp.dto.response.UserResponse;
 
-public class UserRepository {
+@Repository
+public class UserJdbcRepository {
 
 	private final JdbcTemplate jdbcTemplate;
 
-	public UserRepository(JdbcTemplate jdbcTemplate) {
+	public UserJdbcRepository(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	public boolean isUserNotExist(long id) {

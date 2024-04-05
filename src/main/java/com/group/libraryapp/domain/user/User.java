@@ -1,4 +1,4 @@
-package com.group.libraryapp.domain;
+package com.group.libraryapp.domain.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,5 +33,13 @@ public class User {
 		}
 		this.name = name;
 		this.age = age;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void updateName(String name) {
+		this.name = name;
 	}
 }
