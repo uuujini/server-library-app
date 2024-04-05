@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.group.libraryapp.domain.user.User;
 import com.group.libraryapp.domain.user.UserRepository;
@@ -20,16 +21,22 @@ public class UserServiceV2 {
 		this.userRepository = userRepository;
 	}
 
+	// 아래 있는 함수가 시작될 때 start transaction;
+	// 함수가 예외 없이 잘 끝나면 commit;
+	// 함수에 문제가 생기면 rollback;
+	@Transactional
 	public void saveUser(UserCreateRequest request){
 		User u = userRepository.save(new User(request.getName(), request.getAge()));
 	}
 
+	@Transactional(readOnly = true)
 	public List<UserResponse> getUsers() {
 		return userRepository.findAll().stream()
 			.map(UserResponse::new)
 			.collect(Collectors.toList());
 	}
 
+	@Transactional
 	public void updateUser(UserUpdateRequest request) {
 		// select * from user id = ?;
 		// Optional<User>
@@ -38,6 +45,16 @@ public class UserServiceV2 {
 			.orElseThrow(IllegalArgumentException::new);
 		user.updateName(request.getName());
 		userRepository.save(user);
+	}
+
+	@Transactional
+	public void deleteUser(String name) {
+		// SELECT * FROM user WHERE name = ?
+		User user = userRepository.findByName(name);
+		if (user == null) {
+			throw new IllegalArgumentException();
+		}
+		userRepository.delete(user);
 	}
 
 }
