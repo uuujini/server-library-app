@@ -8,8 +8,9 @@ import com.group.libraryapp.domain.user.User;
 import com.group.libraryapp.domain.user.UserRepository;
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory;
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository;
-import com.group.libraryapp.dto.request.BookLoanRequest;
+import com.group.libraryapp.dto.request.book.BookLoanRequest;
 import com.group.libraryapp.dto.request.book.BookCreateRequest;
+import com.group.libraryapp.dto.request.book.BookReturnRequest;
 import com.group.libraryapp.repository.BookRepository;
 
 @Service
@@ -50,4 +51,15 @@ public class BookService {
 		userLoanHistoryRepository.save(new UserLoanHistory(user.getId(), book.getName()));
 	}
 
-}
+	@Transactional
+	public void returnBook(BookReturnRequest request) {
+		User user = userRepository.findByName(request.getUserName())
+			.orElseThrow(IllegalArgumentException::new);
+
+		UserLoanHistory history = userLoanHistoryRepository.findByUserIdAndBookName(user.getId(), request.getBookName())
+			.orElseThrow(IllegalArgumentException::new);
+		history.doReturn();
+		}
+
+	}
+

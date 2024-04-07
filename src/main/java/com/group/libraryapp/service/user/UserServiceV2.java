@@ -1,7 +1,6 @@
 package com.group.libraryapp.service.user;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -9,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.group.libraryapp.domain.user.User;
 import com.group.libraryapp.domain.user.UserRepository;
-import com.group.libraryapp.dto.request.UserUpdateRequest;
+import com.group.libraryapp.dto.request.user.UserUpdateRequest;
 import com.group.libraryapp.dto.request.user.UserCreateRequest;
 import com.group.libraryapp.dto.response.UserResponse;
 

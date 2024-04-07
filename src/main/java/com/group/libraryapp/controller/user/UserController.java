@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.group.libraryapp.dto.request.UserUpdateRequest;
+import com.group.libraryapp.dto.request.user.UserUpdateRequest;
 import com.group.libraryapp.dto.request.user.UserCreateRequest;
 import com.group.libraryapp.dto.response.UserResponse;
 import com.group.libraryapp.service.user.UserServiceV2;

@@ -26,4 +26,8 @@ public class UserLoanHistory {
 		this.isReturn = false;
 	}
 
+	public void doReturn() {
+		this.isReturn = true;
+	}
+
 }

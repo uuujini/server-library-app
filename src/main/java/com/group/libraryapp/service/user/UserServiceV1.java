@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.group.libraryapp.dto.request.UserUpdateRequest;
+import com.group.libraryapp.dto.request.user.UserUpdateRequest;
 import com.group.libraryapp.dto.request.user.UserCreateRequest;
 import com.group.libraryapp.dto.response.UserResponse;
 import com.group.libraryapp.repository.user.UserJdbcRepository;

@@ -1,4 +1,4 @@
-package com.group.libraryapp.dto.request;
+package com.group.libraryapp.dto.request.user;
 
 public class UserUpdateRequest {
 
