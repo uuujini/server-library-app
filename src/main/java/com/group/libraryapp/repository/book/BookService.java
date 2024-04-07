@@ -20,7 +20,8 @@ public class BookService {
 	private final UserLoanHistoryRepository userLoanHistoryRepository;
 	private final UserRepository userRepository;
 
-	public BookService(BookRepository bookRepository, UserLoanHistoryRepository userLoanHistoryRepository, UserRepository userRepository) {
+	public BookService(BookRepository bookRepository, UserLoanHistoryRepository userLoanHistoryRepository,
+		UserRepository userRepository) {
 		this.bookRepository = bookRepository;
 		this.userLoanHistoryRepository = userLoanHistoryRepository;
 		this.userRepository = userRepository;
@@ -39,16 +40,14 @@ public class BookService {
 
 		// 2. 대출 기록 정보를 확인하여 대출 중인지 확인한다.
 		// 3. 만약 대출 중이면 예외를 발생시킨다.
-		if(userLoanHistoryRepository.existsByBookNameAndIsReturn(book.getName(), false)) {
+		if (userLoanHistoryRepository.existsByBookNameAndIsReturn(book.getName(), false)) {
 			throw new IllegalArgumentException("이미 대출되어 있는 책입니다.");
 		}
 
 		// 4. 유저 정보를 가져온다.
 		User user = userRepository.findByName(request.getUserName())
 			.orElseThrow(IllegalArgumentException::new);
-
-		// 5. 유저 정보와 책 정보를 기반으로 UserLoanHistory 저장
-		userLoanHistoryRepository.save(new UserLoanHistory(user.getId(), book.getName()));
+		user.loanBook(book.getName());
 	}
 
 	@Transactional
@@ -56,10 +55,7 @@ public class BookService {
 		User user = userRepository.findByName(request.getUserName())
 			.orElseThrow(IllegalArgumentException::new);
 
-		UserLoanHistory history = userLoanHistoryRepository.findByUserIdAndBookName(user.getId(), request.getBookName())
-			.orElseThrow(IllegalArgumentException::new);
-		history.doReturn();
-		}
-
+		user.returnBook(request.getBookName());
 	}
 
+}
