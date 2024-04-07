@@ -42,4 +42,5 @@ public class User {
 	public void updateName(String name) {
 		this.name = name;
 	}
+
 }

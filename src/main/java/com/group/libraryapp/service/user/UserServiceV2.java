@@ -1,6 +1,7 @@
 package com.group.libraryapp.service.user;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -50,11 +51,11 @@ public class UserServiceV2 {
 	@Transactional
 	public void deleteUser(String name) {
 		// SELECT * FROM user WHERE name = ?
-		User user = userRepository.findByName(name);
-		if (user == null) {
-			throw new IllegalArgumentException();
-		}
-		userRepository.delete(user);
+		// Optional<User> user = userRepository.findByName(name);
+		// if (user == null) {
+		// 	throw new IllegalArgumentException();
+		// }
+		// userRepository.delete(user);
 	}
 
 }
